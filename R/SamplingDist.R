@@ -18,3 +18,4 @@ SamplingDist <- function(samples=50, sample_size=1000, mean = 0, sd = 1){
 
   return(sampleMeans)
 }
+
