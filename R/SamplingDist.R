@@ -1,5 +1,6 @@
-#' @title Genereates
-#' @param  samples Specify how many samples
+#' @title Sampling Distribution Function for Fun
+#'
+#' @param  Samples Specify how many samples
 #'
 #' @export
 
@@ -17,5 +18,7 @@ SamplingDist <- function(samples=50, sample_size=1000, mean = 0, sd = 1){
   }
 
   return(sampleMeans)
+
 }
+
 
