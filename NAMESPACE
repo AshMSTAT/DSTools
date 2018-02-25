@@ -2,4 +2,5 @@
 
 export(SamplingDist)
 export(density_plot)
+export(theme_ash)
 export(top_group)
