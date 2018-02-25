@@ -15,7 +15,7 @@ top_group <- function(dataset, group, n){
 
 
   filter_criteria <- interp(~y != x, .values=list(y = as.name(group), x = ""))
-  TopGroup <- wines %>%
+  TopGroup <- dataset %>%
                 filter_(filter_criteria)%>%
                 group_by_at(vars(one_of(group))) %>%
                 summarise(count = n()) %>%
