@@ -2,7 +2,7 @@
 % Please edit documentation in R/ThemeAsh.R
 \name{theme_ash}
 \alias{theme_ash}
-\title{Custom Theme  -- theme_ash}
+\title{Custom Theme  -- theme_ash  (Uses smaller font)}
 \usage{
 theme_ash()
 }
