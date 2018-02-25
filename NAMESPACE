@@ -2,3 +2,4 @@
 
 export(SamplingDist)
 export(density_plot)
+export(top_group)

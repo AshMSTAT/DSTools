@@ -9,9 +9,9 @@ density_plot(dataset, col_name, rank, value = "")
 \arguments{
 \item{dataset}{-- Data Frame to evaluate}
 
-\item{col_name}{-- Column in data that you wish to look at.}
+\item{col_name}{-- Column in data (the variable) that you wish to look at.}
 
 \item{rank}{--  the parameter that you wish to use for the density plot}
 
-\item{value}{--  Is value in the column you wish to look at}
+\item{value}{--  Is value in the column ( the variable) you wish to create a density plot}
 }

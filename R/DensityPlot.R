@@ -1,17 +1,21 @@
 #' @title Density Plot Generator
 #'
 #' @param  dataset -- Data Frame to evaluate
-#' @param  col_name -- Column in data that you wish to look at.
-#' @param  value --  Is value in the column you wish to look at
+#' @param  col_name -- Column in data (the variable) that you wish to look at.
+#' @param  value --  Is value in the column ( the variable) you wish to create a density plot
 #' @param  rank --  the parameter that you wish to use for the density plot
 #'
 #' @export
 
 
+
 density_plot <- function(dataset, col_name, rank, value = "" ){
 
   require("dplyr")
+  require("ggplot2")
   require("lazyeval")
+
+
   filter_criteria <- interp(~y == x, .values=list(y = as.name(col_name), x = value))
   dataset <- dataset %>% filter_(filter_criteria)
 
