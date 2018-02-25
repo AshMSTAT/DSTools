@@ -25,17 +25,6 @@ SamplingDist <- function(samples=50, sample_size=1000, mean = 0, sd = 1){
 }
 
 
-par(mfrow=c(2,3))
-plot(density(SamplingDist(50)))
-plot(density(SamplingDist(100)))
-plot(density(SamplingDist(250)))
-plot(density(SamplingDist(500)))
-plot(density(SamplingDist(1000)))
-plot(density(SamplingDist(5000)))
-par(mfrow=c(1,1))
-
-
-
 generator = function(n, pop.mean=0, pop.sd=1, conf.lvl=.95) {
 
   plot(NULL
@@ -67,9 +56,3 @@ generator = function(n, pop.mean=0, pop.sd=1, conf.lvl=.95) {
   return(type2.error)
 }
 
-errors <- rep(NA,100)
-for (i in 1:100){
-errors[i] <- generator(100)
-}
-mean(errors)
-plot(density(errors))

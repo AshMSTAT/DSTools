@@ -1,10 +1,25 @@
-#' @title Density Plot for Snow Fall Data
+#' @title Density Plot Generator
 #'
-#' @param  Samples Specify how many samples
+#' @param  dataset -- Data Frame to evaluate
+#' @param  col_name -- Column in data that you wish to look at.
+#' @param  value --  Is value in the column you wish to look at
+#' @param  rank --  the parameter that you wish to use for the density plot
 #'
 #' @export
 
 
+density_plot <- function(dataset, col_name, rank, value = "" ){
+
+  require("dplyr")
+  require("lazyeval")
+  filter_criteria <- interp(~y == x, .values=list(y = as.name(col_name), x = value))
+  dataset <- dataset %>% filter_(filter_criteria)
+
+  p <-  (ggplot(dataset, aes_string(x = rank, fill = col_name)) +
+          geom_density(bw=1))
+  return(p)
+
+}
 
 
 
@@ -12,32 +27,7 @@
 
 
 
-library(tidyverse)
-library(knitr)
-library(ggplot2)
-library(dplyr)
-library(xtable)
 
-
-
-
-wine_data <- read.csv("https://raw.githubusercontent.com/JackStat/PracticalDataScience/master/data/winemag-data-130k-v2.csv")
-wines <- as.tibble(select(wine_data, -X))
-list(wines)
-
-
-Top6Tasters <- wines %>%filter(taster_name != "")%>% group_by(taster_name) %>% summarise(count = n(), AverageScore = round(mean(points),2)) %>% arrange(-count) %>% head(6)
-Top6<- wines %>% filter(taster_name %in% Top6Tasters$taster_name & !is.na(price))
-
-knitr::kable(Top6Tasters[ , ],caption = "Top Tasters by number of reviews .")
-
-sd = sd(Top6$points, na.rm = True)
-ggplot(Top6, aes(x=points, color = taster_name)) +
-  geom_freqpoly(binwidth = 1)+
-  facet_wrap(~taster_name, ncol = 3) +
-  theme_grey() +
-  theme(legend.position = "none") +
-  ggtitle("Top 6 Taste Testers")
 
 
 

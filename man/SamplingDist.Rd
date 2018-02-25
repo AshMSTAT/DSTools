@@ -7,5 +7,11 @@
 SamplingDist(samples = 50, sample_size = 1000, mean = 0, sd = 1)
 }
 \arguments{
-\item{Samples}{Specify how many samples}
+\item{sample_size}{Specifies the size of the sample you are taking}
+
+\item{mean}{of the normal function for generating the individual random points}
+
+\item{sd}{the standard deviation of the normal function for generating the individual random points.}
+
+\item{Samples}{Specify how many samples that you will do}
 }
