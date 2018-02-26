@@ -7,30 +7,37 @@
 #'
 #' @export
 
-qq_plot <- function(dataset, group, value, plot){
+qq_plot <- function(dataset, group, value = "", plot){
 
   require("dplyr")
   require("ggplot2")
   require("lazyeval")
 
-  #filter the data by the set by the goup (variable) that is equal to value choosen
-  filter_criteria <- interp(~y == x, .values=list(y = as.name(group), x = value))
-  dataset1 <- dataset %>% filter_(filter_criteria)
+
+  if(value == ""){
+      plot_title <- paste("QQ Plot of   -", plot, "-   for  -", group, "-")
+    }else{
+      #filter the data by the set by the goup (variable) that is equal to value choosen
+      filter_criteria <- interp(~y == x, .values=list(y = as.name(group), x = value))
+      dataset <- dataset %>% filter_(filter_criteria)
+      plot_title <- paste("QQ Plot of   -", plot, "-   for  -", group, "-", value)
+    }
 
   #remove blank entries from the dataset
   filter_criteria <- interp(~y != x, .values=list(y = as.name(plot), x = ""))
-  dataset1 <- dataset1 %>% filter_(filter_criteria)
+  dataset <- dataset %>% filter_(filter_criteria)
 
   # create qqline
-  y <- quantile(dataset1[[plot]], c(0.25, 0.75))
+  y <- quantile(dataset[[plot]], c(0.25, 0.75))
   x <- qnorm(c(0.25, 0.75))
   slope <- diff(y)/diff(x)
   int <- y[1L] - slope * x[1L]
 
 
-  p <-  ggplot(dataset1, aes_string(sample = plot, fill = group)) +
+  p <-  ggplot(dataset, aes_string(sample = plot)) +
            stat_qq() +
-           geom_abline(slope = slope, intercept = int)
+           geom_abline(slope = slope, intercept = int) +
+           ggtitle(c(plot_title))
 
   return(p)
 }
