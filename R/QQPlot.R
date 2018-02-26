@@ -26,6 +26,4 @@ qq_plots <- function(dataset, group, value, plot){
 }
 
 
-qq_plots(wines,"variety", "Merlot", "points")
 
-r <-  qq_plots(wines,"variety", "Merlot", "price")
