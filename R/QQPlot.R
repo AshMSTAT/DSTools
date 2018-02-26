@@ -1,9 +1,9 @@
 #' @title QQ Plot Generator
 #'
 #' @param  dataset -- Data Frame to evaluate
-#' @param  col_name -- Column in data (the variable) that you wish to look at.
+#' @param  group -- Column in data (the variable) that you wish to look at.
 #' @param  value --  Is value in the column ( the variable) you wish to create a density plot
-#' @param  rank --  the parameter that you wish to use for the qq plot
+#' @param  plot --  the parameter that you wish to use for the qq plot
 #'
 #' @export
 

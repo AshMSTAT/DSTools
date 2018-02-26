@@ -11,8 +11,10 @@
 
 graph_stats <- function(dataset, group, value, plot, bandwidth=1){
 
+   require("dplyr")
   require(gridExtra)
-
+  require("ggplot2")
+  require("lazyeval")
 
   g1 <- scatter_plot(dataset, group, value, plot)
   g2 <- bar_plot(dataset, group, value, plot)
@@ -23,4 +25,4 @@ graph_stats <- function(dataset, group, value, plot, bandwidth=1){
 
 }
 
-graph_stats(wines,"variety", "Merlot", "points")
+

@@ -1,9 +1,9 @@
 #' @title Density Plot Generator
 #'
 #' @param  dataset -- Data Frame to evaluate
-#' @param  col_name -- Column in data (the variable) that you wish to look at.
+#' @param  group -- Column in data (the variable) that you wish to look at.
 #' @param  value --  Is value in the column ( the variable) you wish to create a density plot
-#' @param  rank --  the parameter that you wish to use for the density plot
+#' @param  plot --  the parameter that you wish to use for the density plot
 #' @param  Bandwith -- width of smothting in kernal density estimation
 #'
 #' @export
@@ -26,9 +26,7 @@ density_plot <- function(dataset, group, value, plot, bandwidth=1){
 
   p <-  ggplot(dataset1, aes_string(x = plot, fill = group)) +
           geom_density(bw=bandwidth)
-
   return(p)
-
 }
 
 

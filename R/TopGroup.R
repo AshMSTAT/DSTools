@@ -13,7 +13,6 @@ top_group <- function(dataset, group, n){
   require("knitr")
   require("lazyeval")
 
-
   filter_criteria <- interp(~y != x, .values=list(y = as.name(group), x = ""))
   TopGroup <- dataset %>%
                 filter_(filter_criteria)%>%
