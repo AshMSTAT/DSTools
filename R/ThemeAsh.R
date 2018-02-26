@@ -3,11 +3,8 @@
 #'
 #' @export
 
-require("dplyr")
-require("ggplot2")
-
-
 theme_ash <- function () {
+
   theme_dark(base_size=10) %+replace%
     theme(
       panel.background  = element_blank(),

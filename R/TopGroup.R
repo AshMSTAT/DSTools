@@ -6,12 +6,12 @@
 #'
 #' @export
 
-
 top_group <- function(dataset, group, n){
 
   require("dplyr")
   require("knitr")
   require("lazyeval")
+
 
   filter_criteria <- interp(~y != x, .values=list(y = as.name(group), x = ""))
   TopGroup <- dataset %>%
@@ -23,6 +23,7 @@ top_group <- function(dataset, group, n){
 
   p <- knitr::kable(TopGroup[ , ], caption = "By number of reviews.")
   return(p)
+
 }
 
 

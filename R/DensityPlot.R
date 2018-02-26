@@ -8,8 +8,6 @@
 #'
 #' @export
 
-
-
 density_plot <- function(dataset, group, value, plot, bandwidth=1){
 
   require("dplyr")

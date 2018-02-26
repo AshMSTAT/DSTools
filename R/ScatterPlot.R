@@ -7,12 +7,11 @@
 #'
 #' @export
 
-require("dplyr")
-require("ggplot2")
-require("lazyeval")
-
-
 scatter_plot <- function(dataset, group, value, plot){
+
+  require("dplyr")
+  require("ggplot2")
+  require("lazyeval")
 
   #filter the data by the set by the goup (variable) that is equal to value choosen
   filter_criteria <- interp(~y == x, .values=list(y = as.name(group), x = value))
@@ -27,7 +26,6 @@ scatter_plot <- function(dataset, group, value, plot){
   p <-  ggplot(dataset1, aes_string(y = plot, x = seq(1,n), fill = group)) +
                 geom_point()
   return(p)
-
 
 }
 

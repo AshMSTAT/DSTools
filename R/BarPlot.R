@@ -7,15 +7,13 @@
 #'
 #' @export
 
-
-
 bar_plot <- function(dataset, group, value, plot){
 
   require("dplyr")
   require("ggplot2")
   require("lazyeval")
 
-
+  #filter the data by the set by the goup (variable) that is equal to value choosen
   filter_criteria <- interp(~y == x, .values=list(y = as.name(group), x = value))
   dataset1 <- dataset %>% filter_(filter_criteria)
 
