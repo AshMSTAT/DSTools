@@ -9,21 +9,21 @@
 
 
 
-bar_plot <- function(dataset, col_name, value = "", rank){
+bar_plot <- function(dataset, group, value, plot){
 
   require("dplyr")
   require("ggplot2")
   require("lazyeval")
 
 
-  filter_criteria <- interp(~y == x, .values=list(y = as.name(col_name), x = value))
+  filter_criteria <- interp(~y == x, .values=list(y = as.name(group), x = value))
   dataset1 <- dataset %>% filter_(filter_criteria)
 
   #remove blank entries from the dataset
-  filter_criteria <- interp(~y != x, .values=list(y = as.name(rank), x = ""))
+  filter_criteria <- interp(~y != x, .values=list(y = as.name(plot), x = ""))
   dataset1 <- dataset1 %>% filter_(filter_criteria)
 
-  p <-  (ggplot(dataset1, aes_string(x = rank, fill = col_name)) +
+  p <-  (ggplot(dataset1, aes_string(x = plot, fill = group)) +
            geom_bar())
 
   return(p)

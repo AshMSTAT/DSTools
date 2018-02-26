@@ -23,11 +23,20 @@ scatter_plot <- function(dataset, group, value, plot){
   filter_criteria <- interp(~y != x, .values=list(y = as.name(plot), x = ""))
   dataset1 <- dataset1 %>% filter_(filter_criteria)
 
+  n <- length(dataset1[[plot]])
+  p <-  ggplot(dataset1, aes_string(y = plot, x = seq(1,n), fill = group)) +
+                geom_point()
 
-  #select the values to be plotted
-  filter_criteria <- interp(~y, .values=list(y = as.name(plot)))
-  dataset1 <- dataset1 %>% select_(filter_criteria)
+  return(p)
 
-  plot(dataset1[[plot]], main = plot)
 
 }
+
+
+
+
+#select the values to be plotted
+filter_criteria <- interp(~y, .values=list(y = as.name(plot)))
+dataset1 <- dataset1 %>% select_(filter_criteria)
+
+plot(dataset1[[plot]], main = plot)

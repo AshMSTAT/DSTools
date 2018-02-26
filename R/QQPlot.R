@@ -22,12 +22,18 @@ qq_plot <- function(dataset, group, value, plot){
   filter_criteria <- interp(~y != x, .values=list(y = as.name(plot), x = ""))
   dataset1 <- dataset1 %>% filter_(filter_criteria)
 
-  #select the values to be pplotted
-  filter_criteria <- interp(~y, .values=list(y = as.name(plot)))
-  dataset1 <- dataset1 %>% select_(filter_criteria)
+  # create qqline
+  y <- quantile(dataset1[[plot]], c(0.25, 0.75))
+  x <- qnorm(c(0.25, 0.75))
+  slope <- diff(y)/diff(x)
+  int <- y[1L] - slope * x[1L]
 
-  qqnorm(dataset1[[plot]], main = plot)
-  qqline(dataset1[[plot]])
+
+  p <-  ggplot(dataset1, aes_string(sample = plot, fill = group)) +
+           stat_qq() +
+           geom_abline(slope = slope, intercept = int)
+
+  return(p)
 }
 
 
