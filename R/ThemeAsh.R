@@ -7,7 +7,7 @@
 
 
 theme_ash <- function () {
-  theme_dark(base_size=10) %+replace%
+  theme_grey(base_size=10) %+replace%
     theme(
       panel.background  = element_blank(),
       plot.background = element_rect(fill="gray96", colour=NA),
