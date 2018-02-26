@@ -9,7 +9,7 @@
 
 
 
-density_plot <- function(dataset, col_name, rank, value = "" ){
+density_plot <- function(dataset, col_name, rank, value = "" , bandwidth){
 
   require("dplyr")
   require("ggplot2")
@@ -20,7 +20,7 @@ density_plot <- function(dataset, col_name, rank, value = "" ){
   dataset <- dataset %>% filter_(filter_criteria)
 
   p <-  (ggplot(dataset, aes_string(x = rank, fill = col_name)) +
-          geom_density(bw=1))
+          geom_density(bw=bandwidth))
   return(p)
 
 }

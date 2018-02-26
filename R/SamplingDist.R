@@ -38,7 +38,6 @@ generator = function(n, pop.mean=0, pop.sd=1, conf.lvl=.95) {
 
   abline(v = pop.mean, col = 'black')
   mtext(expression(mu), cex = 2, at = pop.mean)
-  type2.error = 0
   for (i in 1:100){
 
     x <- rnorm(n, mean = pop.mean, sd = pop.sd)
@@ -50,9 +49,7 @@ generator = function(n, pop.mean=0, pop.sd=1, conf.lvl=.95) {
     }
     else{
       lines(c(interval[1],interval[2]),c(i,i), lwd=2,col='red' )
-      type2.error <- type2.error + 1
-    }
+          }
    }
-  return(type2.error)
-}
+  }
 

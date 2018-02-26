@@ -6,8 +6,6 @@
 
 
 
-
-
 theme_ash <- function () {
   theme_dark(base_size=10) %+replace%
     theme(
