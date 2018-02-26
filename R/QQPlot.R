@@ -13,7 +13,6 @@ qq_plot <- function(dataset, group, value = "", plot){
   require("ggplot2")
   require("lazyeval")
 
-
   if(value == ""){
       plot_title <- paste("QQ Plot of   -", plot, "-   for  -", group, "-")
     }else{
