@@ -5,6 +5,9 @@
 #' @param  value --  Is value in the column ( the variable) you wish to create a density plot
 #' @param  plot --  the parameter that you wish to use for the qq plot
 #'
+#' @import dplyr
+#' @import ggplot
+#'
 #' @export
 
 scatter_plot <- function(dataset, group, value, plot){
