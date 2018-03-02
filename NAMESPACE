@@ -2,8 +2,11 @@
 
 export(bar_plot)
 export(density_plot)
-export(graph_stats)
 export(qq_plot)
 export(scatter_plot)
+export(stats_plot)
 export(theme_ash)
 export(top_group)
+import(dplyr)
+import(ggplot2)
+import(lazyeval)

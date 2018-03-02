@@ -5,21 +5,22 @@
 #' @param  value --  Is value in the column ( the variable) you wish to create a density plot
 #' @param  plot --  the parameter that you wish to use for the qq plot
 #'
+#' @import dplyr
+#' @import ggplot2
+#' @import lazyeval
+#'
 #' @export
 
 qq_plot <- function(dataset, group, value = "", plot){
 
-  require("dplyr")
-  require("ggplot2")
-  require("lazyeval")
 
   if(value == ""){
-      plot_title <- paste("QQ Plot of   -", plot, "-   for  -", group, "-")
+      plot_title <- paste("QQ Plot of -", plot, "- for -", group, "-")
     }else{
       #filter the data by the set by the goup (variable) that is equal to value choosen
       filter_criteria <- interp(~y == x, .values=list(y = as.name(group), x = value))
       dataset <- dataset %>% filter_(filter_criteria)
-      plot_title <- paste("QQ Plot of   -", plot, "-   for  -", group, "-", value)
+      plot_title <- paste("QQ Plot of -", plot, "- for -", group, "-", value)
     }
 
   #remove blank entries from the dataset
@@ -40,6 +41,7 @@ qq_plot <- function(dataset, group, value = "", plot){
 
   return(p)
 }
+
 
 
 

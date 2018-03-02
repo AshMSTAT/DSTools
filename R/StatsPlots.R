@@ -6,15 +6,16 @@
 #' @param  plot --     The parameter that you wish to use for plotting
 #' @param  Bandwith -- width of smothting in kernal density estimation
 #'
+#' @import dplyr
+#' @import ggplot2
+#' @import lazyeval
+#'
 #' @export
 
 
-graph_stats <- function(dataset, group, value, plot, bandwidth=1){
+stats_plot <- function(dataset, group, value, plot, bandwidth=1){
 
-  require("dplyr")
-  require("ggplot2")
-  require("lazyeval")
-  require(gridExtra)
+require(gridExtra)
 
   g1 <- scatter_plot(dataset, group, value, plot)
   g2 <- bar_plot(dataset, group, value, plot)
@@ -24,5 +25,3 @@ graph_stats <- function(dataset, group, value, plot, bandwidth=1){
   grid.arrange(g1, g2, g3, g4, ncol=2)
 
 }
-
-
