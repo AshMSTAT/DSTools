@@ -33,8 +33,6 @@ density_plot <- function(dataset, group, value, plot, bandwidth=1){
 }
 
 
- density_plot(wines, "variety", "Merlot","price")
-
 
 
 
