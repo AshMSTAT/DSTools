@@ -14,14 +14,14 @@
 #' @export
 
 
-stats_plot <- function(dataset, group, value, y, x, bandwidth=1){
+stats_plot <- function(dataset, group, value, x, y, ylimit, bandwidth=1){
 
 require(gridExtra)
 
-  g1 <- jitter_plot(dataset, group, value, x, y)
-  g2 <- bar_plot(dataset, group, value, y)
-  g3 <- density_plot(dataset, group, value, y, bandwidth)
-  g4 <- qq_plot(dataset, group, value, y)
+  g1 <- jitter_plot(dataset, group, value, x, y, ylimit)
+  g2 <- bar_plot(dataset, group, value, x, ylimit)
+  g3 <- density_plot(dataset, group, value, x, ylimit, bandwidth)
+  g4 <- qq_plot(dataset, group, value, x, ylimit)
 
   grid.arrange(g1, g2, g3, g4, ncol=2)
 

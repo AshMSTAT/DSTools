@@ -11,18 +11,29 @@
 #'
 #' @export
 
-bar_plot <- function(dataset, group, value, plot){
+bar_plot <- function(dataset, group, value, y, ylimit){
+
 
 
   #filter the data by the set by the goup (variable) that is equal to value choosen
-  filter_criteria <- interp(~y == x, .values=list(y = as.name(group), x = value))
-  dataset1 <- dataset %>% filter_(filter_criteria)
+  if(value == ""){
+
+  }else{
+    #filter the data by the set by the goup (variable) that is equal to value choosen
+    filter_criteria <- interp(~y == x, .values=list(y = as.name(group), x = value))
+    dataset <- dataset %>% filter_(filter_criteria)
+
+  }
+
+
 
   #remove blank entries from the dataset
-  filter_criteria <- interp(~y != x, .values=list(y = as.name(plot), x = ""))
-  dataset1 <- dataset1 %>% filter_(filter_criteria)
+  filter_criteria <- interp(~y != x, .values=list(y = as.name(y), x = ""))
+  dataset <- dataset %>% filter_(filter_criteria)
+  filter_criteria <- interp(~y <= x, .values=list(y = as.name(y), x = as.numeric(ylimit)))
+  dataset <- dataset %>% filter_(filter_criteria)
 
-  p <-  (ggplot(dataset1, aes_string(x = plot, fill = group)) +
+  p <-  (ggplot(dataset, aes_string(x = y, fill = group)) +
            geom_bar())
    return(p)
 
