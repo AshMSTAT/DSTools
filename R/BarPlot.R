@@ -27,3 +27,4 @@ bar_plot <- function(dataset, group, value, plot){
    return(p)
 
 }
+

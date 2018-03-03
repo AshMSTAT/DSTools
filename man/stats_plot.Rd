@@ -4,7 +4,7 @@
 \alias{stats_plot}
 \title{Statistic Graphs Comparison}
 \usage{
-stats_plot(dataset, group, value, plot, bandwidth = 1)
+stats_plot(dataset, group, value, y, x, bandwidth = 1)
 }
 \arguments{
 \item{dataset}{--  Data Frame to evaluate}
@@ -13,7 +13,9 @@ stats_plot(dataset, group, value, plot, bandwidth = 1)
 
 \item{value}{--    Is value in the column ( the variable) you wish to create a plot for}
 
-\item{plot}{--     The parameter that you wish to use for plotting}
+\item{y}{--     The result or output variable that you wish to use for plotting}
+
+\item{x}{--     The control or input variable}
 
 \item{Bandwith}{-- width of smothting in kernal density estimation}
 }
