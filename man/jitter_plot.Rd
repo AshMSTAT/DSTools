@@ -2,16 +2,20 @@
 % Please edit documentation in R/JitterPlot.R
 \name{jitter_plot}
 \alias{jitter_plot}
-\title{Bar Plot Generator}
+\title{Jittered Scatter Plot Generator}
 \usage{
-jitter_plot(dataset, group, value = "", x, y)
+jitter_plot(dataset, group, value = "", x, y, ylimit)
 }
 \arguments{
 \item{dataset}{-- Data Frame to evaluate}
 
-\item{group}{-- Column in data (the variable) that you wish to look at.}
+\item{group}{--    Column in data (the variable) that you wish to look at.}
 
-\item{value}{--  Is value in the column ( the variable) you wish to create a density plot}
+\item{value}{--    Is value in the column ( the variable) you wish to create a plot for}
 
-\item{plot}{--  the parameter that you wish to use for the density plot}
+\item{x}{--     The control or input variable}
+
+\item{y}{--     The result or output variable that you wish to use for plotting}
+
+\item{ylimit}{-- limit on the y value}
 }

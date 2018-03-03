@@ -4,7 +4,7 @@
 \alias{bar_plot}
 \title{Bar Plot Generator}
 \usage{
-bar_plot(dataset, group, value, plot)
+bar_plot(dataset, group, value, y, ylimit)
 }
 \arguments{
 \item{dataset}{-- Data Frame to evaluate}

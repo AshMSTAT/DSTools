@@ -4,7 +4,7 @@
 \alias{density_plot}
 \title{Density Plot Generator}
 \usage{
-density_plot(dataset, group, value, plot, bandwidth = 1)
+density_plot(dataset, group, value, y, ylimit, bandwidth = 1)
 }
 \arguments{
 \item{dataset}{-- Data Frame to evaluate}

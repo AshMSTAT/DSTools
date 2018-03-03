@@ -4,7 +4,7 @@
 \alias{qq_plot}
 \title{QQ Plot Generator}
 \usage{
-qq_plot(dataset, group, value = "", plot)
+qq_plot(dataset, group, value = "", y, ylimit)
 }
 \arguments{
 \item{dataset}{-- Data Frame to evaluate}

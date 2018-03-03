@@ -1,4 +1,4 @@
-#' @title Top Grouping by Count
+#' @title Top Data by Count (returns new data set with only top values of choosen group)
 #'
 #' @param  dataset -- Data Frame to evaluate
 #' @param  group -- Grouping that you wish to use on the data frame
@@ -20,11 +20,6 @@ top_data <- function(dataset, group, n){
     arrange(-count) %>%
     head(n)
 
-
-  #filter_criteria <- interp(~y %in% x, .values=list(y = as.name(group), x = dataset[[group]]))
-
-
-  #taster_name %in% Top6Tasters$taster_name
   TopData <- dataset %>% filter(dataset[[group]] %in% TopN[[group]])
 
 

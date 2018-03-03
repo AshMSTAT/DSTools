@@ -4,7 +4,7 @@
 \alias{scatter_plot}
 \title{Scatter Plot Generator}
 \usage{
-scatter_plot(dataset, group, value, plot)
+scatter_plot(dataset, group, value, plot, ylimit)
 }
 \arguments{
 \item{dataset}{-- Data Frame to evaluate}
