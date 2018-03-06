@@ -9,12 +9,28 @@
 #'
 #' @export
 
-jitter_plot <- function(dataset, group, value="", x, y, ylimit){
+jitter_plot <- function(dataset, group, value="", x, y, ylimit=""){
 
 
   require(dplyr)
   require(ggplot2)
   require(lazyeval)
+
+  if(y == ''){
+    stop("The y variable can not be left blank")
+  }
+  if(x == ''){
+    stop("The x variable can not be left blank")
+  }
+  if(ylimit <= 0){
+    stop("The y limit must be greater than 0")
+  }
+
+   max_limit =  max(dataset[[y]], na.rm = TRUE)
+   if(ylimit >= max(max_limit)){
+    stop("The ylimit can not be larger than the max value of the data")
+  }
+
 
   #filter the data by the set by the goup (variable) that is equal to value choosen
     if(value == ""){
@@ -31,8 +47,12 @@ jitter_plot <- function(dataset, group, value="", x, y, ylimit){
   dataset <- dataset %>% filter_(filter_criteria)
   filter_criteria <- interp(~y != x, .values=list(y = as.name(y), x = ""))
   dataset <- dataset %>% filter_(filter_criteria)
+
+  #Check for limit on y value
+  if(y == ""){
   filter_criteria <- interp(~y <= x, .values=list(y = as.name(y), x = as.numeric(ylimit)))
   dataset <- dataset %>% filter_(filter_criteria)
+  }
 
   p <-  (ggplot(dataset, aes_string(x = x, y = y, color = group)) +
            geom_jitter()) +

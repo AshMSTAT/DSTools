@@ -4,7 +4,7 @@
 \alias{jitter_plot}
 \title{Jittered Scatter Plot Generator}
 \usage{
-jitter_plot(dataset, group, value = "", x, y, ylimit)
+jitter_plot(dataset, group, value = "", x, y, ylimit = "")
 }
 \arguments{
 \item{dataset}{-- Data Frame to evaluate}
