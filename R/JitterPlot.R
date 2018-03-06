@@ -12,10 +12,6 @@
 jitter_plot <- function(dataset, group, value="", x, y, ylimit=""){
 
 
-  require(dplyr)
-  require(ggplot2)
-  require(lazyeval)
-
   if(y == ''){
     stop("The y variable can not be left blank")
   }

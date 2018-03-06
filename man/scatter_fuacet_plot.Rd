@@ -4,7 +4,7 @@
 \alias{scatter_fuacet_plot}
 \title{Top Data by Count (returns new data set with only top values of choosen group)}
 \usage{
-scatter_fuacet_plot(dataset, group, x, y, n)
+scatter_fuacet_plot(dataset, group, x, n, limit, bw = 1)
 }
 \arguments{
 \item{dataset}{-- Data Frame to evaluate}

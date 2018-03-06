@@ -6,33 +6,45 @@
 #'
 #' @import dplyr
 #' @import ggplot2
-#' @import lazyeval
+#' @import lazyeval"
 #'
 #' @export
 
-scatter_fuacet_plot <- function(dataset, group, x, y, n){
+scatter_fuacet_plot <- function(dataset, group, x, n, limit, bw=1){
 
+  #remove rows where the "y" value or "x" value is blank
+  filter_criteria <- interp(~y != x, .values=list(y = as.name(x), x = ""))
+  dataset <- dataset %>% filter_(filter_criteria)
   filter_criteria <- interp(~y != x, .values=list(y = as.name(group), x = ""))
+  dataset <- dataset %>% filter_(filter_criteria)
 
+  #count up instances of each group
+  sorted_dataset <- dataset %>%
+            filter_(filter_criteria)%>%
+            group_by_at(vars(one_of(group))) %>%
+            summarise(count = n())
+
+  #remove any groups that do not have more than 50 instances
+  filter_criteria <- interp(~y > x, .values=list(y = as.name("count"), x = as.integer(limit)))
+  sorted_dataset <- sorted_dataset %>% filter_(filter_criteria)
+
+  dataset <- dataset %>% filter(dataset[[group]] %in% sorted_dataset[[group]])
+
+  #sort and order by user selection
   TopN <- dataset %>%
-    filter_(filter_criteria)%>%
     group_by_at(vars(one_of(group))) %>%
-    summarise(count = n()) %>%
-    arrange(-count) %>%
+    summarise_at(.vars = vars(x),.funs = c(mean="mean")) %>%
+    arrange(-mean)%>%
     head(n)
 
   TopData <- dataset %>% filter(dataset[[group]] %in% TopN[[group]])
-  plot_title <- paste("Plot of -", y, "- vs -", x, "- for -", group)
+  plot_title <- paste("Histogram of -", x, "- for -", group)
 
-    p <- ggplot(TopData, aes_string(x=x, y=y, color = group)) +
-      geom_point(position = 'jitter', alpha =.50)+
-      facet_wrap(~TopData[[group]], ncol = 3) +
-      ylim(c(0,500))+
-      theme(legend.position = "none") +
-      geom_smooth(method = "loess", span = 1, se = FALSE, color ='maroon')+
-      ggtitle(plot_title)
-
-
+    p <- ggplot(TopData, aes_string(x=x, fill = group)) +
+                geom_histogram(binwidth = bw) +
+                facet_wrap(~TopData[[group]], ncol = 3) +
+                theme(legend.position = "none") +
+                ggtitle(plot_title)
  return(p)
 }
 
